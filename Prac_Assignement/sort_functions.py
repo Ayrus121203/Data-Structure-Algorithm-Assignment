@@ -115,7 +115,7 @@ def linear_search(value, target):
 	n = len(value)
 
 	for i in range(n):
-		if value[i]["customer_name"] == target:
+		if value[i]["customer_name"] == target or value[i]["customer_name"] != target:
 			return value[i]
 	return False
 

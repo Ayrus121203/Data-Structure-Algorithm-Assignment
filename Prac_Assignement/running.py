@@ -64,52 +64,63 @@ try:
                 cust_name_to_search = input('Enter the customer name you wish to update: ').title()
                 cust_val_update = sort_functions.linear_search(staycation_booking_details_dict,cust_name_to_search)
 
-                customer_list=[]
-                for i in staycation_booking_details_dict:
-                    customer_name= i["customer_name"]
-                    customer_list.append(customer_name)
-
-                print('Cust_list:',customer_list)
-                print('Cust_val_update: ',cust_val_update)
-                print(staycation_booking_details_dict)
-
-                while (cust_val_update not in customer_list) and (cust_val_update not in staycation_booking_details_dict):
-                    print('This person does not exists')
-                    cust_val_update = input('Enter new name')
-                    if cust_val_update in customer_list or cust_val_update in staycation_booking_details_dict:
-
-                        print('custvalupdate',cust_val_update)
-                        print('cust_lists',customer_list)
-                        print('staycation_dict: ',staycation_booking_details_dict)
+                #code to store only cust names in a list for comparison
+                customer_name_list=[]
+                for cust_name in staycation_booking_details_dict:
+                    name = cust_name["customer_name"]
+                    customer_name_list.append(name)
+                print('customer_name_list',customer_name_list)
 
 
-                while (cust_val_update in staycation_booking_details_dict) or (cust_val_update in customer_list):
-                    #2
-                    print('Chosen name will be overridded..')
-                    cust_val_update = input('Enter neww name: ')
-                    print('New name saved \n'
-                          'Printing new name list')
+                #else cust name entered is not in the list and will not be updated
+                while cust_name_to_search not in customer_name_list:
+                    re_enter_name = input('Name entered does not exists. Enter a name that is in the dict.')
+                    if re_enter_name in customer_name_list:
+                        print('cust_name_to_search', cust_name_to_search)
+                        print('re_enter_name',re_enter_name)
+                        break
+                #if cust name entered and is in list this will update cust name record
+                if (cust_name_to_search in customer_name_list) or (re_enter_name in customer_name_list) : #1 in cause one is just a name and one is the entire dict
 
-                    print('custvalupdate',cust_val_update)
-                    print('cust_lists',customer_list)
-                    print('staycation_dict #2: ',staycation_booking_details_dict)
+                    new_cust_name= input('Enter the new cust name: ')
 
-
-                    cust_name_to_search["customer_name"]= cust_val_update
-                    print('custvalupdate',cust_val_update)
-                    print('cust_lists',customer_list)
-                    print('staycation_dict #2: ',staycation_booking_details_dict)
-
+                    #assume that the new name user wants to update to cannot be in the list, prevent duplicate records
+                    while new_cust_name in customer_name_list:
+                        new_cust_name= input('New Customer Name already exsits. Enter a new name that does not exisst: ')
 
 
-                if cust_val_update not in customer_list and (cust_val_update not in staycation_booking_details_dict):
-                    #3
+                    while new_cust_name not in customer_name_list:
+                        print('New Customer Name {} Accepted #2'.format(new_cust_name))
+                        print('cust_val_update #2',cust_val_update)
+                        sort_functions.shellSort(staycation_booking_details_dict)
+                        for i in staycation_booking_details_dict:
+                            cust_val_update["customer_name"] = new_cust_name
+                            print('Staycation_Dict_Updated #2?: ',i["customer_name"])
+                        break
 
-                    cust_name_to_search["customer_name"]= cust_val_update
-                    print('Sucss')
-                    sort_functions.shellSort(staycation_booking_details_dict)
-                    for i in staycation_booking_details_dict:
-                        print(i["customer_name"])
+                    #codes if var 'cust_name_to_search' is in cust_list BUT var 'new_cust_name' is NOT in customer_list
+                    #if new_cust_name is not in customer_list, means that var new_cust_name is unique and can be acceptted.
+                    while new_cust_name not in customer_name_list:
+                        print('New Customer Name {} Accepted #3'.format(new_cust_name))
+                        print('cust_val_update #3',cust_val_update)
+                        sort_functions.shellSort(staycation_booking_details_dict)
+                        for i in staycation_booking_details_dict:
+                            cust_val_update["customer_name"] = new_cust_name
+                            print('Staycation_Dict_Updated #3?: ',i["customer_name"])
+                        break
+
+
+                    # print('staycation_booking_details_dict #1',staycation_booking_details_dict)
+                    # print('cust_name_to_search',cust_name_to_search)
+
+                else:
+                    print('Err Occured')
+
+
+
+
+
+
 
 
             elif choice == "6":
