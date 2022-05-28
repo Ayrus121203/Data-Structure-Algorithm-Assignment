@@ -11,15 +11,6 @@ staycation_booking_details_dict = [
                                         {"customer_name": "Koen", "package_name": "Towers", "cost": 100, "pax": 36}
                                     ]
 
-Cust_name= []
 
-for i in staycation_booking_details_dict:
-    names= i["customer_name"]
-    Cust_name.append(names)
 
-print(Cust_name)
-new_name=input('new name: ')
-while new_name in Cust_name:
-    new_name=input('Name in Cust')
-else:
-    print('Success')
+

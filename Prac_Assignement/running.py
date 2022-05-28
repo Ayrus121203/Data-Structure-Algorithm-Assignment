@@ -69,10 +69,12 @@ try:
                 customer_name_list=[]
                 for cust_name in staycation_booking_details_dict:
                     name = cust_name["customer_name"]
-                    customer_name_list.append(name)
+                    customer_name_list += [(name)]
                 print('customer_name_list',customer_name_list)
                 print('cust_name_search; ',cust_name_to_search)
                 print('cust_val_update: ',cust_val_update)
+
+
 
                 if cust_val_update == False:
                     print('Name entered does not exists. Check the record and try again')
@@ -80,7 +82,7 @@ try:
                 #if cust name entered and is in list this will update cust name record
                 elif (cust_val_update in staycation_booking_details_dict): #1 in cause one is just a name and one is the entire dict
 
-                    new_cust_name= input('Customer name in Staycation Record. Enter the new cust name. New name will override old name: ')
+                    new_cust_name= input('Customer name in Staycation Record. Enter the new cust name. New name will override old name: ').title()
 
                     if new_cust_name not in customer_name_list:
                         #codes if var 'cust_name_to_search' is in cust_list BUT var 'new_cust_name' is NOT in customer_list
@@ -88,24 +90,28 @@ try:
                         while new_cust_name not in customer_name_list:
                             print('New Customer Name {} Accepted #3'.format(new_cust_name))
                             print('cust_val_update #3',cust_val_update)
-
+                            sort_functions.shellSort(staycation_booking_details_dict)
                             for i in staycation_booking_details_dict:
                                 cust_val_update["customer_name"] = new_cust_name
-                                sort_functions.shellSort(staycation_booking_details_dict)
+
                                 print('Staycation_Dict_Updated #3?: ',i["customer_name"])
+                                sort_functions.shellSort(staycation_booking_details_dict)
+
                             break
                     else:
                         #assume that the new name user wants to update to cannot be in the list, prevent duplicate records
                         while new_cust_name in customer_name_list:
-                            new_cust_name= input('New Customer Name already exsits. Enter a new name that does not exisst: ')
+                            new_cust_name= input('New Customer Name already exsits. Enter a new name that does not exisst: ').title()
                             while new_cust_name not in customer_name_list:
                                 print('New Customer Name {} Accepted #2'.format(new_cust_name))
                                 print('cust_val_update #2',cust_val_update)
-
+                                sort_functions.shellSort(staycation_booking_details_dict)
                                 for i in staycation_booking_details_dict:
                                     cust_val_update["customer_name"] = new_cust_name
-                                    sort_functions.shellSort(staycation_booking_details_dict)
+
                                     print('Staycation_Dict_Updated #2?: ',i["customer_name"])
+                                    sort_functions.shellSort(staycation_booking_details_dict)
+
                                 break
 
                         #
