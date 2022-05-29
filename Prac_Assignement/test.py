@@ -12,5 +12,6 @@ staycation_booking_details_dict = [
                                     ]
 
 
-
+for i in staycation_booking_details_dict:
+    print('im gay')
 

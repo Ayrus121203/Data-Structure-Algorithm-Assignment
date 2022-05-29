@@ -125,6 +125,16 @@ def linear_search(value, target):
 
     return False
 
+def linear_search_pack_name_5(value, target):
+    print('Staycation booking will now be searched using Linear Search')
+    n = len(value)
+
+    for i in range(n):
+        if value[i]["package_name"] == target:
+            return value[i]
+
+    return False
+
 # Python3 program for implementation of Shell Sort
 # Python3 program for implementation of Shell Sort
 def shellSort(theSeq):

@@ -4,16 +4,16 @@ try:
     user_inputs = ['1', '2', '3', '4', '5', '6', '7', '8', 'end']
 
     staycation_booking_details_dict = [
-        {"customer_name": "Bill", "package_name": "Package I", "cost": 200, "pax": 20},
-            {"customer_name": "Amos", "package_name": "Package J", "cost": 100, "pax": 30},
-                {"customer_name": "Tan", "package_name": "Package H", "cost": 50, "pax": 7},
-                    {"customer_name": "Beverly", "package_name": "Package C", "cost": 900, "pax": 3},
-                        {"customer_name": "Theresa", "package_name": "Package E", "cost": 300, "pax": 29},
-                            {"customer_name": "Ellen", "package_name": "Package B", "cost": 200, "pax": 17},
-                                {"customer_name": "Hollow", "package_name": "Package A", "cost": 190, "pax": 23},
-                                    {"customer_name": "Jill", "package_name": "Package G", "cost": 400, "pax": 28},
-                                        {"customer_name": "Jane", "package_name": "Package F", "cost": 700, "pax": 10},
-                                            {"customer_name": "Koen", "package_name": "PackageD", "cost": 100, "pax": 36}
+        {"customer_name": "Bill", "package_name": "Fire", "cost": 200, "pax": 20},
+            {"customer_name": "Amos", "package_name": "Air", "cost": 100, "pax": 30},
+                {"customer_name": "Tan", "package_name": "Water", "cost": 50, "pax": 7},
+                    {"customer_name": "Beverly", "package_name": "Earth", "cost": 900, "pax": 3},
+                        {"customer_name": "Theresa", "package_name": "Lava", "cost": 300, "pax": 29},
+                            {"customer_name": "Ellen", "package_name": "Sea", "cost": 200, "pax": 17},
+                                {"customer_name": "Hollow", "package_name": "Mountain", "cost": 190, "pax": 23},
+                                    {"customer_name": "Jill", "package_name": "Zoo", "cost": 400, "pax": 28},
+                                        {"customer_name": "Jane", "package_name": "Desert", "cost": 700, "pax": 10},
+                                            {"customer_name": "Koen", "package_name": "Oceania", "cost": 100, "pax": 36}
                                         ]
 
 
@@ -62,8 +62,9 @@ try:
 
             elif choice == "5":
                 cust_name_to_search = input('Enter the customer name you wish to update: ').title()
-                re_enter_name =''
+                # re_enter_name =''
                 cust_val_update = sort_functions.linear_search(staycation_booking_details_dict,cust_name_to_search)
+
 
                 #code to store only cust names in a list for comparison MAY BE REMOVED/MODIFIED TO FIT QUES REQUIREMENTS
                 customer_name_list=[]
@@ -74,62 +75,136 @@ try:
                 print('cust_name_search; ',cust_name_to_search)
                 print('cust_val_update: ',cust_val_update)
 
+                #code to store only cust names in a list for comparison MAY BE REMOVED/MODIFIED TO FIT QUES REQUIREMENTS
+                customer_package_name_list_5 = []
+                for cust_pack_name_5 in staycation_booking_details_dict:
+                    pack_name_5 = cust_pack_name_5["package_name"]
+                    customer_package_name_list_5 += [(pack_name_5)]
+                print('package_name_list',customer_package_name_list_5)
 
 
-                if cust_val_update == False:
+                if cust_val_update == False: #FOR UPDTAE CHOICES 2, TRY IMPLEMENT THIS
                     print('Name entered does not exists. Check the record and try again')
                     pass
                 #if cust name entered and is in list this will update cust name record
                 elif (cust_val_update in staycation_booking_details_dict): #1 in cause one is just a name and one is the entire dict
+                    update_choices = input('What wanna change\n'
+                                           '1.Cust name\n'
+                                           '2.Packname\n'
+                                           'Choce: ')
 
-                    new_cust_name= input('Customer name in Staycation Record. Enter the new cust name. New name will override old name: ').title()
+                    if update_choices == "1":
 
-                    if new_cust_name not in customer_name_list:
-                        #codes if var 'cust_name_to_search' is in cust_list BUT var 'new_cust_name' is NOT in customer_list
-                        #if new_cust_name is not in customer_list, means that var new_cust_name is unique and can be acceptted.
-                        while new_cust_name not in customer_name_list:
-                            print('New Customer Name {} Accepted #3'.format(new_cust_name))
-                            print('cust_val_update #3',cust_val_update)
-                            sort_functions.shellSort(staycation_booking_details_dict)
-                            for i in staycation_booking_details_dict:
-                                cust_val_update["customer_name"] = new_cust_name
+                        new_cust_name= input('Customer name in Staycation Record. Enter the new cust name. New name will override old name: ').title()
 
-                                print('Staycation_Dict_Updated #3?: ',i["customer_name"])
-                                sort_functions.shellSort(staycation_booking_details_dict)
-
-                            break
-                    else:
-                        #assume that the new name user wants to update to cannot be in the list, prevent duplicate records
-                        while new_cust_name in customer_name_list:
-                            new_cust_name= input('New Customer Name already exsits. Enter a new name that does not exisst: ').title()
+                        if new_cust_name not in customer_name_list:
+                            #codes if var 'cust_name_to_search' is in cust_list BUT var 'new_cust_name' is NOT in customer_list
+                            #if new_cust_name is not in customer_list, means that var new_cust_name is unique and can be acceptted.
                             while new_cust_name not in customer_name_list:
-                                print('New Customer Name {} Accepted #2'.format(new_cust_name))
-                                print('cust_val_update #2',cust_val_update)
+                                print('New Customer Name {} Accepted #3'.format(new_cust_name))
+                                print('cust_val_update #3',cust_val_update)
                                 sort_functions.shellSort(staycation_booking_details_dict)
                                 for i in staycation_booking_details_dict:
                                     cust_val_update["customer_name"] = new_cust_name
 
-                                    print('Staycation_Dict_Updated #2?: ',i["customer_name"])
+                                    print('Staycation_Dict_Updated #3?: ',i["customer_name"])
                                     sort_functions.shellSort(staycation_booking_details_dict)
 
                                 break
+                        else:
+                            #assume that the new name user wants to update to cannot be in the list, prevent duplicate records
+                            while new_cust_name in customer_name_list:
+                                new_cust_name= input('New Customer Name already exsits. Enter a new name that does not exisst: ').title()
+                                while new_cust_name not in customer_name_list:
+                                    print('New Customer Name {} Accepted #2'.format(new_cust_name))
+                                    print('cust_val_update #2',cust_val_update)
+                                    sort_functions.shellSort(staycation_booking_details_dict)
+                                    for i in staycation_booking_details_dict:
+                                        cust_val_update["customer_name"] = new_cust_name
 
-                        #
-                        #
-                        # #codes if var 'cust_name_to_search' is in cust_list BUT var 'new_cust_name' is NOT in customer_list
-                        # #if new_cust_name is not in customer_list, means that var new_cust_name is unique and can be acceptted.
-                        # while new_cust_name not in customer_name_list:
-                        #     print('New Customer Name {} Accepted #3'.format(new_cust_name))
-                        #     print('cust_val_update #3',cust_val_update)
-                        #     sort_functions.shellSort(staycation_booking_details_dict)
-                        #     for i in staycation_booking_details_dict:
-                        #         cust_val_update["customer_name"] = new_cust_name
-                        #         print('Staycation_Dict_Updated #3?: ',i["customer_name"])
-                        #     break
+                                        print('Staycation_Dict_Updated #2?: ',i["customer_name"])
+                                        sort_functions.shellSort(staycation_booking_details_dict)
+
+                                    break
 
 
-                    # print('staycation_booking_details_dict #1',staycation_booking_details_dict)
-                    # print('cust_name_to_search',cust_name_to_search)
+
+
+                    elif update_choices == "2": #NOTE FOR PACKAGE NAME ITS THE OPPOSITE OF UPDATE CUST NAME. SUCCESSFUL CHANGE ONLY HAPPPENDS IF PACK NAME CUST ENTERS EXSISTS IN THE PACK NAME LIST
+                        new_cust_pack_name= input('Customer name in Staycation record. Enter new package name. Warning new name will override old name: ').title()
+                        new_cust_pack_name_update= sort_functions.linear_search_pack_name_5(staycation_booking_details_dict,new_cust_pack_name)
+                        print('jsiwhsiwhswh' ,new_cust_pack_name_update)
+
+                        if new_cust_pack_name_update == False: #FOR UPDTAE CHOICES 2, TRY IMPLEMENT THIS
+                            print('Name entered does not exists. Check the record and try again')
+                            pass
+
+                        elif new_cust_pack_name in customer_package_name_list_5:
+
+                            #codes if var 'cust_name_to_search' is in cust_list BUT var 'new_cust_name' is NOT in customer_list
+                            #if new_cust_name is not in customer_list, means that var new_cust_name is unique and can be acceptted.
+                            while new_cust_pack_name in customer_package_name_list_5:
+                                print('New Package Name {} Accepted #3'.format(new_cust_pack_name))
+
+                                # sort_functions.shellSort(staycation_booking_details_dict)
+
+                                pack_name_update = new_cust_pack_name_update["package_name"]
+                                print('gaysyysysys', pack_name_update)
+
+                                pax_num_update = new_cust_pack_name_update["pax"] + 1
+                                print('wnjdnwjdnj',pax_num_update)
+
+                                cost_update = new_cust_pack_name_update["cost"]
+                                print('mekdek ',cost_update)
+
+                                for i in staycation_booking_details_dict:
+                                    new_cust_pack_name_update["pax"] = pax_num_update
+                                    cust_val_update["package_name"] = pack_name_update
+                                    cust_val_update["pax"] = pax_num_update
+                                    cust_val_update["cost"] = cost_update
+
+                                    # print('new cust_val_update: ',cust_val_update["package_name"])
+
+                                    print("Customer name:", i["customer_name"], end=" ")
+                                    print("Package name:", i["package_name"], end=" ")
+                                    print("Pax number:", i["pax"], end=" ")
+                                    print("Cost:", i["cost"])
+
+                                break
+                        else:
+                            #assume that the new name user wants to update to cannot be in the list, prevent duplicate records
+                            while new_cust_pack_name not in customer_package_name_list_5:
+                                new_cust_pack_name= input('Entered Package Name does not exsits. Enter a new name that exisst: ').title()
+                                while new_cust_pack_name in customer_package_name_list_5:
+
+                                    print('New Package Name {} Accepted #2'.format(new_cust_pack_name))
+
+                                    # sort_functions.shellSort(staycation_booking_details_dict)
+
+                                    pack_name_update = new_cust_pack_name_update["package_name"]
+                                    print('gaysyysysys #3', pack_name_update)
+
+                                    pax_num_update = new_cust_pack_name_update["pax"] + 1
+                                    print('wnjdnwjdnj #3',pax_num_update)
+
+                                    cost_update = new_cust_pack_name_update["cost"]
+                                    print('mekdek #3 ',cost_update)
+
+                                    for i in staycation_booking_details_dict:
+                                        new_cust_pack_name_update["pax"] = pax_num_update
+                                        cust_val_update["package_name"] = pack_name_update
+                                        cust_val_update["pax"] = pax_num_update
+                                        cust_val_update["cost"] = cost_update
+
+                                    # print('new cust_val_update: ',cust_val_update["package_name"])
+
+                                        print("Customer name:", i["customer_name"], end=" ")
+                                        print("Package name:", i["package_name"], end=" ")
+                                        print("Pax number:", i["pax"], end=" ")
+                                        print("Cost:", i["cost"])
+
+                                    break
+
 
                 else:
                     print('Err Occured')
