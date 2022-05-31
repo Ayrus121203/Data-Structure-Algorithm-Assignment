@@ -1,0 +1,473 @@
+from time import sleep
+
+from colorama import Style as S
+
+
+
+staycation_booking_details_dict =[
+    {"customer_name": "Bill", "package_name": "Sentosa", "cost": 200, "pax": 20},
+ {"customer_name": "Amos", "package_name": "Riverside", "cost": 100, "pax": 30},
+  {"customer_name": "Tan", "package_name": "Sea", "cost": 50, "pax": 7},
+   {"customer_name": "Beverly", "package_name": "Wind", "cost": 900, "pax": 3},
+    {"customer_name": "Theresa", "package_name": "Rock", "cost": 300, "pax": 29},
+     {"customer_name": "Ellen", "package_name": "Fire", "cost": 200, "pax": 17},
+      {"customer_name": "Hollow", "package_name": "Air", "cost": 190, "pax": 23},
+       {"customer_name": "Bill", "package_name": "Ocean", "cost": 400, "pax": 28},
+        {"customer_name": "Jane", "package_name": "Atlantic", "cost": 700, "pax": 10},
+         {"customer_name": "Koen", "package_name": "Towers", "cost": 100, "pax": 36}
+    ]
+
+
+def bubbleSort(theSeq):     #theSeq is any var name. Meant to reference staycation_dict in main.py
+                            #import sort_functions
+    n = len(theSeq)
+
+    # Traverse through all array elements
+    for i in range(n):
+
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+
+            # traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            if theSeq[j]["customer_name"] > theSeq[j+1]["customer_name"]:  #Can change the key name to any name in staycation_dict
+                theSeq[j], theSeq[j+1] = theSeq[j+1], theSeq[j]             #Refer to Optimised ver for Package name Sort
+
+
+
+def bubbleSort_reverse(theSeq):     #theSeq is any var name. Meant to reference staycation_dict in main.py
+                            #import sort_functions
+    n = len(theSeq)
+
+    # Traverse through all array elements
+    for i in range(n):
+
+        # Last i elements are already in place
+        for j in range(0, n-i-1):
+
+            # traverse the array from 0 to n-i-1
+            # Swap if the element found is greater
+            # than the next element
+            if theSeq[j]["customer_name"] < theSeq[j+1]["customer_name"]:  #Reverse change the sign from More Than to Less Than
+                theSeq[j], theSeq[j+1] = theSeq[j+1], theSeq[j]             #Refer to Optimised ver for Package name Sort
+
+
+def bubbleSort_optimized(theSeq):
+
+    n = len(theSeq)
+
+    # Perform n-1 bubble operations on the sequence
+    passCount = 0
+    for i in range(n - 1, 0, -1):
+        # Set boolean variable to check occurrence of swapping
+        # in inner loop
+        swapFlag = False
+
+        # Bubble the largest item to the end
+        for j in range(i):
+            if (theSeq[j]["customer_name"] > theSeq[j + 1]["customer_name"]):
+                # Swap the j and j+1 items
+                # tmp = theSeq[j]
+                # theSeq[j] = theSeq[j + 1]
+                # theSeq[j + 1] = tmp
+                theSeq[j], theSeq[j + 1] = theSeq[j + 1], theSeq[j]
+
+                # Set boolean variable value if swapping occurred
+                swapFlag = True
+
+        #passCount += 1   #enable this code to see num of passes made
+        #print(passCount)
+        # Exit the loop if no swapping occurred
+        # in the previous pass
+        if (not swapFlag):
+            break
+
+
+
+def bubbleSort_optimized_reverse(theSeq):
+
+    n = len(theSeq)
+
+    # Perform n-1 bubble operations on the sequence
+    passCount = 0
+    for i in range(n - 1, 0, -1):
+        # Set boolean variable to check occurrence of swapping
+        # in inner loop
+        swapFlag = False
+
+        # Bubble the largest item to the end
+        for j in range(i):
+            if (theSeq[j]["customer_name"] < theSeq[j + 1]["customer_name"]):
+                # Swap the j and j+1 items
+                # tmp = theSeq[j]
+                # theSeq[j] = theSeq[j + 1]
+                # theSeq[j + 1] = tmp
+                theSeq[j], theSeq[j + 1] = theSeq[j + 1], theSeq[j]
+
+                # Set boolean variable value if swapping occurred
+                swapFlag = True
+
+        #passCount += 1   #enable this code to see num of passes made
+        #print(passCount)
+        # Exit the loop if no swapping occurred
+        # in the previous pass
+        if (not swapFlag):
+            break
+
+
+
+
+
+
+
+
+
+def selection_sort(theSeq):
+    # Sort a sequence in ascending order using the selection sort algorithm
+    n = len(theSeq)
+    for i in range(n - 1):
+        # Assume the ith element is the smallest.
+        currNdx = i
+        # Determine if any other element contains a smaller value.
+        for j in range(i+1, n):
+            if theSeq[j]["package_name"] < theSeq[currNdx]["package_name"]:
+                currNdx = j
+        # Swap the ith value and currNdx value on ly if the
+        # smallest/biggest value is not already in its proper position.
+        if currNdx != i:
+            # tmp = theSeq[i]
+            # theSeq[i] = theSeq[currNdx]
+            # theSeq[currNdx] = tmp
+            theSeq[i], theSeq[currNdx] = theSeq[currNdx], theSeq[i]
+
+
+def selection_sort_reverse(theSeq):
+    # Sort a sequence in ascending order using the selection sort algorithm
+    n = len(theSeq)
+    for i in range(n - 1):
+        # Assume the ith element is the smallest.
+        currNdx = i
+        # Determine if any other element contains a smaller value.
+        for j in range(i+1, n):
+            if theSeq[j]["package_name"] > theSeq[currNdx]["package_name"]:
+                currNdx = j
+        # Swap the ith value and currNdx value on ly if the
+        # smallest/biggest value is not already in its proper position.
+        if currNdx != i:
+            # tmp = theSeq[i]
+            # theSeq[i] = theSeq[currNdx]
+            # theSeq[currNdx] = tmp
+            theSeq[i], theSeq[currNdx] = theSeq[currNdx], theSeq[i]
+
+
+
+
+
+def insertion_sort(theSeq):
+    print('Staycation booking will now be sorted using Insertion Sort')
+
+    n = len(theSeq)
+
+    for i in range(1,n):
+        val = theSeq[i]
+        pos = i
+        while pos > 0 and val["cost"] < theSeq[pos - 1]["cost"]:
+            theSeq[pos] = theSeq[pos - 1]
+            pos -= 1
+
+            theSeq[pos] = val
+
+
+def insertion_sort_reverse(theSeq):
+    print('Staycation booking will now be sorted using Insertion Sort')
+
+    n = len(theSeq)
+
+    for i in range(1,n):
+        val = theSeq[i]
+        pos = i
+        while pos > 0 and val["cost"] > theSeq[pos - 1]["cost"]:
+            theSeq[pos] = theSeq[pos - 1]
+            pos -= 1
+
+            theSeq[pos] = val
+
+
+def linear_search(value, target):
+    print('Staycation booking will now be searched using Linear Search')
+    n = len(value)
+
+    for i in range(n):
+        if value[i]["customer_name"] == target:
+            return value[i]
+
+    return False
+
+def linear_search_pack_name_5(value, target):
+    print('Staycation booking will now be searched using Linear Search')
+    n = len(value)
+
+    for i in range(n):
+        if value[i]["package_name"] == target:
+            return value[i]
+
+    return False
+
+# Python3 program for implementation of Shell Sort
+# Python3 program for implementation of Shell Sort
+def shellSort(theSeq):
+    # code here
+    n = len(theSeq)
+    gap=n//2
+
+
+    while gap>0:
+        j=gap
+        # Check the array in from left to right
+        # Till the last possible index of j
+        while j<n:
+            i=j-gap # This will keep help in maintain gap value
+
+            while i>=0:
+                # If value on right side is already greater than left side value
+                # We don't do swap else we swap
+                if theSeq[i+gap]["customer_name"] > theSeq[i]["customer_name"]:
+
+                    break
+                else:
+                    theSeq[i+gap],theSeq[i]=theSeq[i],theSeq[i+gap]
+
+                i=i-gap # To check left side also
+                            # If the element present is greater than current element
+            j+=1
+        gap=gap//2
+
+
+# This code is contributed by Illion
+
+
+# Python3 program to
+# sort array using
+# pancake sort
+
+# Reverses arr[0..i] */
+def flip(arr, i):
+    start = 0
+    while start < i:
+        temp = arr[start]
+        arr[start] = arr[i]
+        arr[i] = temp
+        start += 1
+        i -= 1
+
+# Returns index of the maximum
+# element in arr[0..n-1] */
+def findMax(arr, n):
+    mi = 0
+    for i in range(0,n):
+        if arr[i]["package_name"] > arr[mi]["package_name"]:
+            mi = i
+    return mi
+
+# The main function that
+# sorts given array
+# using flip operations
+def pancakeSort(arr):
+    n = len(arr)
+    # Start from the complete
+    # array and one by one
+    # reduce current size
+    # by one
+    curr_size = n
+    while curr_size > 1:
+        # Find index of the maximum
+        # element in
+        # arr[0..curr_size-1]
+        mi = findMax(arr, curr_size)
+
+        # Move the maximum element
+        # to end of current array
+        # if it's not already at
+        # the end
+        if mi != curr_size-1:
+            # To move at the end,
+            # first move maximum
+            # number to beginning
+            flip(arr, mi)
+
+            # Now move the maximum
+            # number to end by
+            # reversing current array
+            flip(arr, curr_size-1)
+        curr_size -= 1
+
+# A utility function to
+# print an array of size n
+def printArray(arr, n):
+    for i in range(0,n):
+        print ("%d"%( arr[i]),end=" ")
+
+
+# This code is contributed by shreyanshi_arun.
+def binary_search( theValues, target ):
+    # Start with the entire sequence of elements
+    low = 0
+    high = len(theValues)-1
+
+    # Repeatedly subdivide the sequence in half # until the target is found
+    while low<=high:
+        # Find the midpoint of the sequence
+        mid = (low+high)//2 # or int(low/high)/2
+
+        # Does the midpoint contain the target?
+        # If yes, return midpoint (i.e. index of the list)
+        if theValues[mid]["package_name"] == target:
+            return theValues[mid]
+        # Or is the target before the midpoint?
+        elif target < theValues[mid]["package_name"]:
+            high = mid-1
+        #     low-----------------mid-------------high
+        #     low----mid-----high
+
+        # Or is the target after the midpoint?
+        else:
+            low = mid+1
+    #         low-----------------mid-------------high
+    #                                low----mid---high
+
+    # If the sequence cannot be subdivided further,
+    # target is not in the list of values
+    return -1
+
+
+# Range Opt 7 Sort Func:
+# Python program for implementation of heap Sort
+
+# To heapify subtree rooted at index i.
+# n is size of heap
+
+
+def heapify(theSeq, n, i):
+    largest = i # Initialize largest as root
+    l = 2 * i + 1	 # left = 2*i + 1
+    r = 2 * i + 2	 # right = 2*i + 2
+
+    # See if left child of root exists and is
+    # greater than root
+    if l < n and theSeq[largest]["cost"] < theSeq[l]["cost"]:
+        largest = l
+
+    # See if right child of root exists and is
+    # greater than root
+    if r < n and theSeq[largest]["cost"] < theSeq[r]["cost"]:
+        largest = r
+
+    # Change root, if needed
+    if largest != i:
+        theSeq[i], theSeq[largest] = theSeq[largest], theSeq[i] # swap
+
+        # Heapify the root.
+        heapify(theSeq, n, largest)
+
+# The main function to sort an array of given size
+
+
+def heapSort(theSeq):
+    n = len(theSeq)
+
+    # Build a maxheap.
+    for i in range(n//2 - 1, -1, -1):
+        heapify(theSeq, n, i)
+
+    # One by one extract elements
+    for i in range(n-1, 0, -1):
+        theSeq[i], theSeq[0] = theSeq[0], theSeq[i] # swap
+        heapify(theSeq, i, 0)
+
+
+def val_ran(r1,r2):
+    n = []
+
+    for i in staycation_booking_details_dict:
+        if i["cost"] >= r1 and i["cost"] <= r2:
+            n.append(i)
+
+    return n
+
+
+def S_reset(nl=False):
+    """
+    Function to reset colorama foreground, background colors and styles.
+
+    Param:
+    - nl (bool): If True, will print a new line after resetting colorama. Defaults to False.
+    """
+    end = ""
+    if (nl):
+        end = "\n"
+
+    print(f"{S.RESET_ALL}", end=end)
+
+
+
+def shutdown_countdown():
+    """
+    Prints a countdown message to the user before closing the application
+    """
+    print("Please press ENTER to exit...")
+    input()
+    for i in range(2, -1, -1):
+        print(f"\rAutomatically shutting down in {i} seconds...", end="")
+        if (i != 0):
+            sleep(1)
+    print('')
+def admin_pass_countdown():
+    """
+    Prints a countdown message to the user before closing the application
+    """
+    print("Maximum Password Attempt Reached!")
+    print("Press Enter To Enter Cooldown Period")
+    input()
+    for i in range(2, -1, -1):
+        print(f"\rCooldown Period Ending In {i} Seconds.", end= " ")
+        if (i != 0):
+            sleep(1)
+
+
+
+
+def shutdown(nl=0, program="Main"):
+    """
+    Print some messages before shutting down the program
+
+    Args:
+    - nl (int/bool, optional): Whether to print a newline before the shutdown messages. Defaults to 0/False.
+    - program (str, optional): Print the corresponding program shutdown messages. Defaults to "Main".
+    """
+    if (nl):
+        print()
+
+    if (program.title() == "Main"):
+        print(f"\n You have entered 'end' to exit the programme.")
+    else:
+        print(f"\n Exiting program...")
+
+    S_reset()
+    countdown()
+
+
+def encrypt(text,s):
+    result =''
+    for i in range(len(text)):
+        char = text[i]
+
+        if (char.isupper()):
+            result += chr((ord(char)+ s-65) % 26 + 65)
+        else:
+            result += chr((ord(char) + s - 97) % 26 + 97)
+
+    return result
+
+
+
